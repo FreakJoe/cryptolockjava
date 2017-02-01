@@ -6,12 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import com.google.gson.Gson;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("CryptoLock.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("CryptoLock");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
