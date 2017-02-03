@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -8,12 +10,18 @@
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CryptoLock.Controller">
    <columnConstraints>
       <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <Button fx:id="addDocumentButton" mnemonicParsing="false" onAction="#addDocument" text="Add Document" GridPane.rowIndex="1" />
+      <Label fx:id="documentNameLabel" text="Document Name" />
+      <TextField fx:id="documentName" promptText="Document Name" GridPane.columnIndex="1" />
+      <Button fx:id="addDocument" mnemonicParsing="false" onAction="#addDocument" text="Add Document" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="accessDocument" mnemonicParsing="false" text="Access Document" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>
