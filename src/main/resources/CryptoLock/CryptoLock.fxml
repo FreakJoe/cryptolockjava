@@ -22,6 +22,6 @@
       <Label fx:id="documentNameLabel" text="Document Name" />
       <TextField fx:id="documentName" promptText="Document Name" GridPane.columnIndex="1" />
       <Button fx:id="addDocument" mnemonicParsing="false" onAction="#addDocument" text="Add Document" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="accessDocument" mnemonicParsing="false" text="Access Document" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="accessDocument" mnemonicParsing="false" onAction="#accessDocument" text="Access Document" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
 </GridPane>

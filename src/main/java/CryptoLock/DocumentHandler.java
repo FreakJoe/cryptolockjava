@@ -59,12 +59,33 @@ public class DocumentHandler {
         return success;
     }
 
+    public static boolean saveDocumentsFile(HashMap<String, Document> documents) {
+        boolean success = true;
+        try {
+            PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+            writer.write(gson.toJson(documents));
+            writer.close();
+        } catch (IOException e) {
+            success = false;
+        }
+        return success;
+    }
+
     public static Document getDocument(String nameHash, String json) {
         try {
             return getDocuments(json).get(nameHash);
         } catch(ValueError ex) {
             return null;
         }
+    }
+
+    public static boolean addDocument(String documentName) {
+        HashMap<String, Document> documents = getDocuments();
+        Document document = new Document(documentName, "");
+        documents.put(documentName, document);
+        boolean success = saveDocumentsFile(documents);
+
+        return success;
     }
 
     public static Document getDocument(String nameHash) {
