@@ -2,14 +2,22 @@ package CryptoLock;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
-import java.util.HashMap;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class Controller {
+    private static Stage primaryStage;
     @FXML TextField documentName;
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        Controller.primaryStage = primaryStage;
+    }
 
     /**
      * Checks a document name for validity.
@@ -61,8 +69,16 @@ public class Controller {
                 alert.setHeaderText(null);
                 alert.show();
                 return false;
+            };
+            try {
+                FXMLLoader loader = new FXMLLoader(Controller.class.getResource("DocumentView.fxml"));
+                Parent root = (Parent) loader.load();
+                primaryStage.setTitle("CryptoLock");
+                primaryStage.setScene(new Scene(root, 350, 300));
+                primaryStage.show();
+            } catch(Exception ex) {
+                System.out.println(ex.getMessage());
             }
-            System.out.println(documentObject.contents);
         }
         return true;
     }
@@ -85,5 +101,17 @@ public class Controller {
     @FXML protected void accessDocument(ActionEvent event) {
         String document = documentName.getText();
         accessDocument(document);
+    }
+
+    @FXML protected void cancel(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Controller.class.getResource("CryptoLock.fxml"));
+            Parent root = (Parent) loader.load();
+            primaryStage.setTitle("CryptoLock");
+            primaryStage.setScene(new Scene(root, 350, 300));
+            primaryStage.show();
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

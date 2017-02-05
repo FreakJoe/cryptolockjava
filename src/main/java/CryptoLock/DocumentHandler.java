@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 /**
@@ -80,8 +82,14 @@ public class DocumentHandler {
     }
 
     public static boolean addDocument(String documentName) {
+        // Calculate current date-time for the 'last edited' timestamp
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
+        String lastEdited = sdf.format(cal.getTime());
+
+        // Add document to documents list and save to file
         HashMap<String, Document> documents = getDocuments();
-        Document document = new Document(documentName, "");
+        Document document = new Document(documentName, "", lastEdited);
         documents.put(documentName, document);
         boolean success = saveDocumentsFile(documents);
 
