@@ -7,16 +7,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Controller {
     private static Stage primaryStage;
     @FXML TextField documentName;
 
+
     public static void setPrimaryStage(Stage primaryStage) {
         Controller.primaryStage = primaryStage;
+    }
+
+    public static Stage getPrimaryStage() {
+        return Controller.primaryStage;
     }
 
     /**
@@ -73,11 +78,13 @@ public class Controller {
             try {
                 FXMLLoader loader = new FXMLLoader(Controller.class.getResource("DocumentView.fxml"));
                 Parent root = (Parent) loader.load();
+                DocumentViewController controller = loader.getController();
+                controller.setDocument(documentObject);
                 primaryStage.setTitle("CryptoLock");
                 primaryStage.setScene(new Scene(root, 350, 300));
                 primaryStage.show();
             } catch(Exception ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
             }
         }
         return true;
@@ -101,17 +108,5 @@ public class Controller {
     @FXML protected void accessDocument(ActionEvent event) {
         String document = documentName.getText();
         accessDocument(document);
-    }
-
-    @FXML protected void cancel(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(Controller.class.getResource("CryptoLock.fxml"));
-            Parent root = (Parent) loader.load();
-            primaryStage.setTitle("CryptoLock");
-            primaryStage.setScene(new Scene(root, 350, 300));
-            primaryStage.show();
-        } catch(Exception ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 }
